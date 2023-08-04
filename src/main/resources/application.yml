@@ -1,0 +1,16 @@
+server:
+  port: 8282
+
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+        #format_sql: true
+        #show_sql: true
+  datasource:
+    url: jdbc:mysql://localhost:3308/employee_db?useSSL=false&allowPublicKeyRetrieval=true
+    username: ediaz
+    password: ediaz
