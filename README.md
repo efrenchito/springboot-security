@@ -17,7 +17,7 @@
 > ### Lesson02 (spring-security Autoconfiguration)
 > ***
 >- Add spring-security-starter
->- Set DEBUG logging level to security
+>- Set DEBUG logging level to org.springframework.security
 >- Define custom user and password via properties
 >- Define multiple Users (UserDetailService)
 >- Custom Paths without security
