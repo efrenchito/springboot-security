@@ -2,11 +2,11 @@ server:
   port: 8282
 
 spring:
-  security:
-    user:
-      name: ediaz
-      password: ediaz
-      roles: ADMIN
+#  security:
+#    user:
+#      name: ediaz
+#      password: ediaz
+#      roles: ADMIN
   jpa:
     hibernate:
       ddl-auto: update
