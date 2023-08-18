@@ -6,7 +6,7 @@ spring:
     user:
       name: ediaz
       password: ediaz
-      roles: ROLE_ADMIN
+      roles: ADMIN
   jpa:
     hibernate:
       ddl-auto: update

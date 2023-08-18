@@ -19,6 +19,6 @@
 >- Add spring-security-starter
 >- Set DEBUG logging level to org.springframework.security
 >- Define custom user and password via properties
->- Define multiple Users (UserDetailService)
 >- Custom Paths without security
+>- Define multiple Users (UserDetailService)
 >- Role based authentication
