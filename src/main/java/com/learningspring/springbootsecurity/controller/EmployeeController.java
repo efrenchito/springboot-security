@@ -6,6 +6,7 @@ import com.learningspring.springbootsecurity.service.EmployeeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -33,11 +34,13 @@ public class EmployeeController {
         return ResponseEntity.ok(employeeService.getEmployeeById(id));
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("/{id}")
     public ResponseEntity<Employee> updateEmployeeById(@PathVariable long id, @RequestBody EmployeeDto employeeDto) {
         return ResponseEntity.ok(employeeService.updateEmployee(id, employeeDto));
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteEmployee(@PathVariable long id) {
         return ResponseEntity.ok(employeeService.deleteEmployee(id));
