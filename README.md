@@ -23,3 +23,10 @@
 >- Add PasswordEncoder
 >- Define multiple Users (UserDetailService)
 >- Role based authentication
+
+> ### Lesson03 (Database Authentication)
+> ***
+>- JPA Entities - User & Role
+>- Define the ManyToMany relationship
+>- JPA Repositories - UserRepository & RoleRepository
+>- Custom UserDetailsService Implementation
