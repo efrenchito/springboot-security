@@ -30,3 +30,4 @@
 >- Define the ManyToMany relationship
 >- JPA Repositories - UserRepository & RoleRepository
 >- Custom UserDetailsService Implementation
+>- Insert predefined users and roles
