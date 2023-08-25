@@ -1,8 +1,11 @@
 package com.learningspring.springbootsecurity.security;
 
+import com.learningspring.springbootsecurity.service.CustomUserDetailsService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -17,7 +20,10 @@ import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
+@RequiredArgsConstructor
 public class WebSecurity extends WebSecurityConfigurerAdapter {
+
+    private final CustomUserDetailsService customUserDetailsService;
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -34,7 +40,12 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
 
     }
 
-    @Bean
+    @Override
+    public void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth.userDetailsService(customUserDetailsService)
+                .passwordEncoder(passwordEncoder());
+    }
+    /*@Bean
     @Override
     protected UserDetailsService userDetailsService() {
         //UserDetails user = User.builder().username("ediaz").password("ediaz").roles("USER").build();
@@ -50,6 +61,6 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
                 .roles("ADMIN").build();
         return new InMemoryUserDetailsManager(user, admin);
 
-    }
+    }*/
 }
 
