@@ -25,6 +25,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
     private final PasswordEncoder passwordEncoder;
+    private final AuthenticationManager authenticationManager;
 
     public ResponseEntity<String> signup(SignupDto signupDto) {
         String username = signupDto.getUsername();
@@ -46,6 +47,17 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         userRepository.save(user);
 
         return new ResponseEntity<>("User signed-up successfully!", HttpStatus.OK);
+    }
+
+    public ResponseEntity<String> login(LoginDto loginDto) {
+        String username = loginDto.getUsernameOrEmail();
+        String password = loginDto.getPassword();
+
+        UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(username, password);
+        Authentication authentication = authenticationManager.authenticate(usernamePasswordAuthenticationToken);
+        SecurityContextHolder.getContext().setAuthentication(authentication);
+
+        return ResponseEntity.ok("User logged-in successfully!");
     }
 
 }
