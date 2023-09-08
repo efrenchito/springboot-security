@@ -22,4 +22,9 @@ public class AuthenticationController {
         return authenticationService.signup(signupDto);
     }
 
+    @PostMapping("/signin")
+    public ResponseEntity<String> signin(@RequestBody LoginDto loginDto) {
+        return authenticationService.login(loginDto);
+    }
+
 }
