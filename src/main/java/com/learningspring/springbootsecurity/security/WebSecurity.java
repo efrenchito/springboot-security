@@ -44,7 +44,11 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
                .antMatchers(HttpMethod.GET).permitAll()
                .antMatchers("/api/auth/**").permitAll()
                .anyRequest().authenticated()
-            .and().httpBasic();
+            .and().httpBasic()
+            .and().sessionManagement()
+                .maximumSessions(1)
+                .maxSessionsPreventsLogin(true)
+                .expiredUrl("/login");;
 
     }
 
