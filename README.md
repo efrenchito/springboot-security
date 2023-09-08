@@ -31,3 +31,14 @@
 >- JPA Repositories - UserRepository & RoleRepository
 >- Custom UserDetailsService Implementation
 >- Insert predefined users and roles
+
+> ### Lesson04 (Sign Up/Sign in)
+> ***
+>- Sign up DTO
+>  - Authentication Service - Sign up
+>  - Authentication Controller - Sign up
+>- Log in DTO
+>  - AuthenticationManager Bean
+>  - Authentication Service - Log in
+>  - Authentication Controller - Log in
+>- Session Management
