@@ -42,3 +42,17 @@
 >  - Authentication Service - Log in
 >  - Authentication Controller - Log in
 >- Session Management
+
+> ### Lesson05 (JWT Authorization)
+> ***
+>- JWT Configuration
+   >  - Add JWT dependencies
+   >  - Add JWT properties 
+>- JWT Token Generation & Entry Point
+   > - JwtTokenProvider - {Generate|Validate} Token, extract Username, validate Token
+   > - JwtAuthenticationEntryPoint - Add JWT Filter
+   > - JwtAuthenticationFilter - JWT Exception Handling
+>- JWT Spring Security Configuration
+   > - JWT WebSecurity Configuration
+   > - Create JWTResponseDTO
+   > - Change Login REST API to return JWT token
