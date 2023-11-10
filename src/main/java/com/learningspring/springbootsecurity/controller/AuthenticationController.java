@@ -1,5 +1,6 @@
 package com.learningspring.springbootsecurity.controller;
 
+import com.learningspring.springbootsecurity.model.dto.JwtAuthResponse;
 import com.learningspring.springbootsecurity.model.dto.LoginDto;
 import com.learningspring.springbootsecurity.model.dto.SignupDto;
 import com.learningspring.springbootsecurity.service.AuthenticationService;
@@ -23,8 +24,14 @@ public class AuthenticationController {
     }
 
     @PostMapping("/signin")
-    public ResponseEntity<String> signin(@RequestBody LoginDto loginDto) {
-        return authenticationService.login(loginDto);
+    //public ResponseEntity<String> signin(@RequestBody LoginDto loginDto) {
+    public ResponseEntity<JwtAuthResponse> signin(@RequestBody LoginDto loginDto) {
+        //return authenticationService.login(loginDto);
+        String jwt = authenticationService.login(loginDto);
+
+        JwtAuthResponse response = new JwtAuthResponse();
+        response.setAccessToken(jwt);  //.type("Bearer").build;
+        return ResponseEntity.ok(response);
     }
 
 }
