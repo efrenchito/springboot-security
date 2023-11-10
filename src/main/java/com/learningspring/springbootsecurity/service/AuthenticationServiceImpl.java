@@ -6,6 +6,7 @@ import com.learningspring.springbootsecurity.model.entity.Role;
 import com.learningspring.springbootsecurity.model.entity.User;
 import com.learningspring.springbootsecurity.repository.RoleRepository;
 import com.learningspring.springbootsecurity.repository.UserRepository;
+import com.learningspring.springbootsecurity.security.jwt.JwtTokenProvider;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,6 +27,8 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     private final RoleRepository roleRepository;
     private final PasswordEncoder passwordEncoder;
     private final AuthenticationManager authenticationManager;
+
+    private final JwtTokenProvider jwtTokenProvider;
 
     public ResponseEntity<String> signup(SignupDto signupDto) {
         String username = signupDto.getUsername();
@@ -49,7 +52,8 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         return new ResponseEntity<>("User signed-up successfully!", HttpStatus.OK);
     }
 
-    public ResponseEntity<String> login(LoginDto loginDto) {
+    //public ResponseEntity<String> login(LoginDto loginDto) {
+    public String login(LoginDto loginDto) {
         String username = loginDto.getUsernameOrEmail();
         String password = loginDto.getPassword();
 
@@ -57,7 +61,9 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         Authentication authentication = authenticationManager.authenticate(usernamePasswordAuthenticationToken);
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
-        return ResponseEntity.ok("User logged-in successfully!");
+        String jwt = jwtTokenProvider.generateToken(authentication);
+        //return ResponseEntity.ok("User logged-in successfully!");
+        return jwt;
     }
 
 }
